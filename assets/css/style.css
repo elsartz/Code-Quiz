@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none; 
+}
+
+.main-header {
+    display: flex;    
+    margin: 50px;                     
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#btn {
+    background-color: rgb(95, 28, 95);
+    color: white;
+    padding: 7px 10px;
+    border-radius: 7px;
+
+
+}
+
+#btn a {
+    color: white;
+}
+
+.score-screen {
+    padding: 100px;
+}
