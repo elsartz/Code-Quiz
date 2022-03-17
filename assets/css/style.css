@@ -25,12 +25,30 @@ main {
     color: white;
     padding: 7px 10px;
     border-radius: 7px;
+}
 
-
+.btn {
+    background-color: rgb(95, 28, 95);
+    color: white;
+    padding: 7px 10px;
+    border-radius: 7px;
+    margin: 2px;
 }
 
 #btn a {
     color: white;
+}
+
+
+.question-header {
+    color: brown;
+    padding: 20px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+
 }
 
 .score-screen {
