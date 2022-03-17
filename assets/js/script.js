@@ -7,16 +7,14 @@ var countDown = function() {
         clearInterval(startCountDown);
     }
 }
-
 var startCountDown = setInterval(countDown, 1000);
 
-var randomNumber = function (min=0, questionCounter) {
+var randomNumber = function (min, questionCounter) {
     var result = Math.floor(Math.random() * (questionCounter - 0));
     return result;
   };
   console.log(randomNumber(0,5));
   
-var pageContentEl = document.querySelector("#challenge");
 
 var questionCards = [
          { h1:"Commonly used data types Do NOT include:", 
@@ -61,18 +59,18 @@ var questionCards = [
             },
         ];
     
+var pageContentEl = document.querySelector("#challenge");
 
 
-console.log(questionCards[2]);
-console.log(questionCards[randomNumber(0,5)]);
-// console.log(questionCards.[randomNumber(0,5)]);
-// console.log(questionCards[3].h1,questionCards.[3].buttons.btn2);
+var createCardEl = function() {
 
-var createCardEl = function(randomNumber) {
+    var currentCard = questionCards[randomNumber(0,5)];
+    // console.log(currentCard);
+
     var questionEl = document.createElement("h2");
         questionEl.className = "question-header";
-        questionEl.textContent = questionCards[0].h1;
-        questionEl.setAttribute("data-id", randomNumber);
+        questionEl.textContent = currentCard.h1;
+        // questionEl.setAttribute("data-id", randomNumber);
         pageContentEl.appendChild(questionEl);
 
     var optionButtonsEl = document.createElement("div");
@@ -80,24 +78,26 @@ var createCardEl = function(randomNumber) {
         pageContentEl.appendChild(optionButtonsEl);
 
         var firstButtonEl = document.createElement("button");
-            firstButtonEl.textContent = questionCards.qstn1.buttons.btn1.txt;
+            firstButtonEl.textContent = currentCard.buttons.btn1.txt;
             firstButtonEl.className = "btn";
             optionButtonsEl.appendChild(firstButtonEl);
         
         var secondButtonEl = document.createElement("button");
-            secondButtonEl.textContent = questionCards.qstn2.buttons.btn2.txt;
+            secondButtonEl.textContent = currentCard.buttons.btn2.txt;
             secondButtonEl.className = "btn";
             optionButtonsEl.appendChild(secondButtonEl);
 
         var thirdButtonEl = document.createElement("button");
-            thirdButtonEl.textContent = questionCards.qstn3.buttons.btn3.txt;
+            thirdButtonEl.textContent = currentCard.buttons.btn3.txt;
             thirdButtonEl.className = "btn";
             optionButtonsEl.appendChild(thirdButtonEl);
     
         var forthButtonEl = document.createElement("button");
-            forthButtonEl.textContent = questionCards.qstn1.buttons.btn4.txt;
+            forthButtonEl.textContent = currentCard.buttons.btn4.txt;
             forthButtonEl.className = "btn";
             optionButtonsEl.appendChild(forthButtonEl);
+
+    
 }
 
 var removeCardEl = function() {
