@@ -73,7 +73,7 @@ var createCardEl = function() {
         // questionEl.setAttribute("data-id", randomNumber);
         pageContentEl.appendChild(questionEl);
 
-    var optionButtonsEl = document.createElement("div");
+    var optionButtonsEl = document.createElement("section");
         optionButtonsEl.className = "options";
         pageContentEl.appendChild(optionButtonsEl);
 
@@ -96,22 +96,24 @@ var createCardEl = function() {
             forthButtonEl.textContent = currentCard.buttons.btn4.txt;
             forthButtonEl.className = "btn";
             optionButtonsEl.appendChild(forthButtonEl);
-
-    
 }
 
-var removeCardEl = function() {
-    document.getElementById('div').removeChild(pageContentEl);
-    document.getElementById('h2').removeChild(pageContentEl);
-}
+function removeCardEl() {
 
+debugger;
+     var optButtons = document.querySelector("section");
+        pageContentEl.removeChild(optButtons);
+     var header = document.querySelector("h2");
+        pageContentEl.removeChild(header);
+        
+}
 
 
 var buttonHandler = function(event) {
     countDown();
 
     
-    while (startCountDown > 0 || questionCounter > 0) {
+    while (startCountDown > 0 || questionCounter > 0 ){
         removeCardEl();
         createCardEl();
 
