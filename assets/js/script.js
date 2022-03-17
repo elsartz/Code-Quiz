@@ -1,16 +1,25 @@
-var questionCounter = 6;
+var questionCounter = 5;
+var timeLimit = 75;
+
+var countDown = function() {
+    timeLimit--;
+    if (timeLimit === 0) {
+        clearInterval(startCountDown);
+    }
+}
+
+var startCountDown = setInterval(countDown, 1000);
 
 var randomNumber = function (min=0, questionCounter) {
     var result = Math.floor(Math.random() * (questionCounter - 0));
     return result;
   };
-  
-
+  console.log(randomNumber(0,5));
   
 var pageContentEl = document.querySelector("#challenge");
 
-var questionCards = { 
-        qstn1: { h1:"Commonly used data types Do NOT include:", 
+var questionCards = [
+         { h1:"Commonly used data types Do NOT include:", 
                 buttons: { 
                     btn1:{ txt:"1.strings", value: false}, 
                     btn2:{ txt:"2.booleans", value: false}, 
@@ -18,7 +27,7 @@ var questionCards = {
                     btn4:{ txt:"4.numbers", value: false}
                 }
              },
-        qstn2: { h1:"The condition in an if/else statement is enclosed with __________.", 
+         { h1:"The condition in an if/else statement is enclosed with __________.", 
                 buttons: { 
                     btn1:{ txt:"1.quotes", value: false}, 
                     btn2:{ txt:"2.curly brackets", value: true}, 
@@ -26,7 +35,7 @@ var questionCards = {
                     btn4:{ txt:"4.square brackets", value: false}
                 }
             }, 
-        qstn3: { h1:"Arrays in Javascript can be used to store __________.", 
+         { h1:"Arrays in Javascript can be used to store __________.", 
                 buttons: { 
                     btn1:{ txt:"1.numbers and strings", value: false}, 
                     btn2:{ txt:"2.other arrays", value: false}, 
@@ -34,7 +43,7 @@ var questionCards = {
                     btn4:{ txt:"4.all of the above", value: true}
                 }
             },
-        qstn4: { h1:"String values must be enclosed within ________ when being assigned to variables.", 
+         { h1:"String values must be enclosed within ________ when being assigned to variables.", 
                 buttons: { 
                     btn1:{ txt:"1.commas", value: false}, 
                     btn2:{ txt:"2.curly brackets", value: false}, 
@@ -42,7 +51,7 @@ var questionCards = {
                     btn4:{ txt:"4.parenthesis", value: false}
                 }
             },
-        qstn5: { h1:"A very useful tool used during development and debugging for printing content to the debugger is:", 
+         { h1:"A very useful tool used during development and debugging for printing content to the debugger is:", 
                 buttons: { 
                     btn1:{ txt:"1.Javascript", value: false}, 
                     btn2:{ txt:"2.terminal/bash", value: false}, 
@@ -50,17 +59,19 @@ var questionCards = {
                     btn4:{ txt:"4.console.log", value: true}
                 }
             },
-    };
+        ];
     
 
 
-console.log(questionCards.qstn1);
-console.log(questionCards.qstn1.btn2);
+console.log(questionCards[2]);
+console.log(questionCards[randomNumber(0,5)]);
+// console.log(questionCards.[randomNumber(0,5)]);
+// console.log(questionCards[3].h1,questionCards.[3].buttons.btn2);
 
 var createCardEl = function(randomNumber) {
     var questionEl = document.createElement("h2");
         questionEl.className = "question-header";
-        questionEl.textContent = questionCards.qstn1.h1;
+        questionEl.textContent = questionCards[0].h1;
         questionEl.setAttribute("data-id", randomNumber);
         pageContentEl.appendChild(questionEl);
 
@@ -97,10 +108,10 @@ var removeCardEl = function() {
 
 
 var buttonHandler = function(event) {
+    countDown();
 
-
-    var time = 1;
-    while (time < 0 || questionCounter > 0) {
+    
+    while (startCountDown > 0 || questionCounter > 0) {
         removeCardEl();
         createCardEl();
 
