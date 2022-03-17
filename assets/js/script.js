@@ -13,49 +13,41 @@ var questionCards = {
         qstn1: { h1:"Commonly used data types Do NOT include:", 
                 buttons: { 
                     btn1:{ txt:"1.strings", value: false}, 
-                    btn2:{ txt:"2.strings", value: false}, 
-                    btn3:{ txt:"3.strings", value: false}, 
-                    btn4:{ txt:"4.strings", value: false}
+                    btn2:{ txt:"2.booleans", value: false}, 
+                    btn3:{ txt:"3.alerts", value: true}, 
+                    btn4:{ txt:"4.numbers", value: false}
                 }
              },
-        qstn2: { h1:"Pourquoi", 
+        qstn2: { h1:"The condition in an if/else statement is enclosed with __________.", 
                 buttons: { 
-                    btn1:{ txt:"1.strings", value: false}, 
-                    btn2:{ txt:"2.2", value: false}, 
-                    btn3:{ txt:"3.strings", value: false}, 
-                    btn4:{ txt:"4.strings", value: false}
+                    btn1:{ txt:"1.quotes", value: false}, 
+                    btn2:{ txt:"2.curly brackets", value: true}, 
+                    btn3:{ txt:"3.parenthesis", value: false}, 
+                    btn4:{ txt:"4.square brackets", value: false}
                 }
             }, 
-        qstn3: { h1:"Giati", 
+        qstn3: { h1:"Arrays in Javascript can be used to store __________.", 
                 buttons: { 
-                    btn1:{ txt:"1.strings", value: false}, 
-                    btn2:{ txt:"2.3", value: false}, 
-                    btn3:{ txt:"3.strings", value: false}, 
-                    btn4:{ txt:"4.strings", value: false}
+                    btn1:{ txt:"1.numbers and strings", value: false}, 
+                    btn2:{ txt:"2.other arrays", value: false}, 
+                    btn3:{ txt:"3.booleans", value: false}, 
+                    btn4:{ txt:"4.all of the above", value: true}
                 }
             },
-        qstn4: { h1:"Comment", 
+        qstn4: { h1:"String values must be enclosed within ________ when being assigned to variables.", 
                 buttons: { 
-                    btn1:{ txt:"1.strings", value: false}, 
-                    btn2:{ txt:"2.4", value: false}, 
-                    btn3:{ txt:"3.strings", value: false}, 
-                    btn4:{ txt:"4.strings", value: false}
+                    btn1:{ txt:"1.commas", value: false}, 
+                    btn2:{ txt:"2.curly brackets", value: false}, 
+                    btn3:{ txt:"3.quotes", value: true}, 
+                    btn4:{ txt:"4.parenthesis", value: false}
                 }
             },
-        qstn5: { h1:"Is it", 
+        qstn5: { h1:"A very useful tool used during development and debugging for printing content to the debugger is:", 
                 buttons: { 
-                    btn1:{ txt:"1.strings", value: false}, 
-                    btn2:{ txt:"2.5", value: false}, 
-                    btn3:{ txt:"3.strings", value: false}, 
-                    btn4:{ txt:"4.strings", value: false}
-                }
-            },
-        qstn6: { h1:"Erotisi", 
-                buttons: { 
-                    btn1:{ txt:"1.strings", value: false}, 
-                    btn2:{ txt:"2.6", value: false}, 
-                    btn3:{ txt:"3.strings", value: false}, 
-                    btn4:{ txt:"4.strings", value: false}
+                    btn1:{ txt:"1.Javascript", value: false}, 
+                    btn2:{ txt:"2.terminal/bash", value: false}, 
+                    btn3:{ txt:"3.for loops", value: false}, 
+                    btn4:{ txt:"4.console.log", value: true}
                 }
             },
     };
@@ -98,7 +90,8 @@ var createCardEl = function(randomNumber) {
 }
 
 var removeCardEl = function() {
-
+    document.getElementById('div').removeChild(pageContentEl);
+    document.getElementById('h2').removeChild(pageContentEl);
 }
 
 
@@ -108,8 +101,9 @@ var buttonHandler = function(event) {
 
     var time = 1;
     while (time < 0 || questionCounter > 0) {
-        // removeCardEl();
-        // createCardEl();
+        removeCardEl();
+        createCardEl();
+
         questionCounter--;
         
     }
