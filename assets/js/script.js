@@ -1,13 +1,15 @@
 var questionCounter = 5;
 var timeLimit = 75;
 
-var countDown = function() {
-    timeLimit--;
-    if (timeLimit === 0) {
-        clearInterval(startCountDown);
-    }
-}
-var startCountDown = setInterval(countDown, 1000);
+// var countDown = function() {
+//     timeLimit--;
+//     if (timeLimit === 0) {
+//         clearInterval(startCountDown);
+//     }
+// }
+// // console.log(countdown);
+// var startCountDown = setInterval(countDown, 1000);
+// console.log(startCountDown);
 
 var randomNumber = function (min, questionCounter) {
     var result = Math.floor(Math.random() * (questionCounter - 0));
@@ -58,13 +60,23 @@ var questionCards = [
                 }
             },
         ];
-    
+
+var trueAnswer = [  questionCards[0].buttons.btn3,
+                    questionCards[1].buttons.btn2,
+                    questionCards[2].buttons.btn4,
+                    questionCards[3].buttons.btn3,
+                    questionCards[4].buttons.btn4
+                ];
+
+        console.log(trueAnswer);
+                        
 var pageContentEl = document.querySelector("#challenge");
 
+var currentCard = questionCards[randomNumber(0,5)];
 
 var createCardEl = function() {
 
-    var currentCard = questionCards[randomNumber(0,5)];
+    // var currentCard = questionCards[randomNumber(0,5)];
     // console.log(currentCard);
 
     var questionEl = document.createElement("h2");
@@ -96,11 +108,14 @@ var createCardEl = function() {
             forthButtonEl.textContent = currentCard.buttons.btn4.txt;
             forthButtonEl.className = "btn";
             optionButtonsEl.appendChild(forthButtonEl);
+
+            setTimeout(addFooterEl(), 1000);
 }
+
+
 
 function removeCardEl() {
 
-debugger;
      var optButtons = document.querySelector("section");
         pageContentEl.removeChild(optButtons);
      var header = document.querySelector("h2");
@@ -108,18 +123,57 @@ debugger;
         
 }
 
+ function addFooterEl() {
+    var answerEl = document.createElement("footer");
+        answerEl.className = "footer";
 
-var buttonHandler = function(event) {
-    countDown();
+        if (trueAnswer) {// if (buttonHandler.includes(trueAnswer)) {
+        answerEl.textContent = "Correct!";
+    } else {
+        answerEl.textContent = "Wrong!";
+    }
+
+    pageContentEl.appendChild(answerEl);
+    
 
     
-    while (startCountDown > 0 || questionCounter > 0 ){
-        removeCardEl();
-        createCardEl();
+     //debugger;
+    var footer = document.querySelector("footer");
+        // console.log(footer);
+        pageContentEl.removeChild(footer);
+}
 
-        questionCounter--;
+
+var buttonHandler = function(event) {
+    // countDown();
+
+      
+        var totalCards = [currentCard];
+        while (questionCards.length != totalCards.length) {
+// debugger;            
+                if (!totalCards.includes(currentCard)) {
+                    
+                    
+                    removeCardEl();
+                                        
+                } else {
+                    
+                    createCardEl();
+                    totalCards = totalCards + currentCard;
+                }
+                    
+                currentCard = questionCards[randomNumber(0,5)];
+            
+            
+            pageContentEl.addEventListener("click", buttonHandler);
+
+            
+        }
         
-    }
+
+        
+        
+    
 }
 
 pageContentEl.addEventListener("click", buttonHandler);

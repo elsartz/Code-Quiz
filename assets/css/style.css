@@ -51,6 +51,13 @@ main {
 
 }
 
+.footer {
+    width: 100%;
+    border-top: 2px solid grey;
+    margin-top: 20px;
+    font-size: xx-large;
+}
+
 .score-screen {
     padding: 100px;
 }
