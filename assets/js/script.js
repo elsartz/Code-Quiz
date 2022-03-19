@@ -1,15 +1,20 @@
 var questionCounter = 5;
 var timeLimit = 75;
 
-// var countDown = function() {
-//     timeLimit--;
-//     if (timeLimit === 0) {
-//         clearInterval(startCountDown);
-//     }
-// }
-// // console.log(countdown);
-// var startCountDown = setInterval(countDown, 1000);
-// console.log(startCountDown);
+ var countDown = function() {
+     timeLimit--;
+    //  console.log(timeLimit);
+    timeEl.textContent = "Time:" + timeLimit;
+     if (timeLimit === 0) {
+         clearInterval(startCountDown);
+     }
+ }
+
+var startCountDown = setInterval(countDown, 1000);
+
+var timeEl = document.querySelector(".time");
+    // timeEl.textContent = "Time:" + timeLimit;
+
 
 var randomNumber = function (min, questionCounter) {
     var result = Math.floor(Math.random() * (questionCounter - 0));
@@ -61,14 +66,14 @@ var questionCards = [
             },
         ];
 
-var trueAnswer = [  questionCards[0].buttons.btn3,
-                    questionCards[1].buttons.btn2,
-                    questionCards[2].buttons.btn4,
-                    questionCards[3].buttons.btn3,
-                    questionCards[4].buttons.btn4
+var trueAnswer = [  questionCards[0].buttons.btn3.value,
+                    questionCards[1].buttons.btn2.value,
+                    questionCards[2].buttons.btn4.value,
+                    questionCards[3].buttons.btn3.value,
+                    questionCards[4].buttons.btn4.value
                 ];
 
-        console.log(trueAnswer);
+        // console.log(trueAnswer);
                         
 var pageContentEl = document.querySelector("#challenge");
 
@@ -85,9 +90,10 @@ var createCardEl = function() {
         // questionEl.setAttribute("data-id", randomNumber);
         pageContentEl.appendChild(questionEl);
 
-    var optionButtonsEl = document.createElement("section");
-        optionButtonsEl.className = "options";
-        pageContentEl.appendChild(optionButtonsEl);
+     var optionButtonsEl = document.createElement("section");
+          optionButtonsEl.className = "options";
+        
+         pageContentEl.appendChild(optionButtonsEl);
 
         var firstButtonEl = document.createElement("button");
             firstButtonEl.textContent = currentCard.buttons.btn1.txt;
@@ -109,73 +115,62 @@ var createCardEl = function() {
             forthButtonEl.className = "btn";
             optionButtonsEl.appendChild(forthButtonEl);
 
-            setTimeout(addFooterEl(), 1000);
+            
 }
 
 
 
 function removeCardEl() {
 
+   
      var optButtons = document.querySelector("section");
         pageContentEl.removeChild(optButtons);
      var header = document.querySelector("h2");
         pageContentEl.removeChild(header);
-        
+    
 }
 
  function addFooterEl() {
     var answerEl = document.createElement("footer");
         answerEl.className = "footer";
 
-        if (trueAnswer) {// if (buttonHandler.includes(trueAnswer)) {
-        answerEl.textContent = "Correct!";
-    } else {
-        answerEl.textContent = "Wrong!";
-    }
+        if (true) {
+            answerEl.textContent = "Correct!";
+        } else {
+            answerEl.textContent = "Wrong!";
+        }
 
     pageContentEl.appendChild(answerEl);
     
-
-    
-     //debugger;
     var footer = document.querySelector("footer");
-        // console.log(footer);
+     
+        setTimeout(console.log("suppose to delay 2 sec"), 20000);
         pageContentEl.removeChild(footer);
 }
 
+function score(name) {
+    var highScoreEl = document.querySelector("form");
+        highScoreEl.innerHTML = "<input type='text'>" + "name =''" + "</input>";
+        document.getElementsByName(name).submit();
+}
 
+function clearScore() {
+
+}
+
+var optionButtonsEl = document.createElement("section");
+    optionButtonsEl.className = "options";
+        
 var buttonHandler = function(event) {
-    // countDown();
-
-      
-        var totalCards = [currentCard];
-        while (questionCards.length != totalCards.length) {
-// debugger;            
-                if (!totalCards.includes(currentCard)) {
-                    
-                    
-                    removeCardEl();
-                                        
-                } else {
-                    
-                    createCardEl();
-                    totalCards = totalCards + currentCard;
-                }
-                    
-                currentCard = questionCards[randomNumber(0,5)];
-            
-            
-            pageContentEl.addEventListener("click", buttonHandler);
-
-            
-        }
-        
-
-        
-        
+    // debugger;
+    addFooterEl();
+    for (var i=0; i < 2000; i++){};
+    setTimeout(removeCardEl(), 2000);
+    createCardEl();
+    
     
 }
 
-pageContentEl.addEventListener("click", buttonHandler);
+optionButtonsEl.addEventListener("click", buttonHandler);
 
 createCardEl();
