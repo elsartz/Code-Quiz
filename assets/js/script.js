@@ -130,7 +130,6 @@ var createCardEl = function() {
             forthButtonEl.textContent = currentCard.buttons.btn4.txt;
             
             optionButtonsEl.appendChild(forthButtonEl);
-
             
 }
 
@@ -147,8 +146,9 @@ function removeCardEl() {
 }
 
  function addFooterEl(answer) {
-    var answerEl = document.createElement("footer");
-        answerEl.className = "footer";
+     var answerEl = document.createElement("footer");
+         answerEl.className = "footer";
+    
 
         if (answer) {
             answerEl.textContent = "Correct!";
@@ -157,12 +157,12 @@ function removeCardEl() {
             answerEl.textContent = "Wrong!";
             console.log("wrong");
         }
-
-    pageContentEl.appendChild(answerEl);
+        var footerEl = document.querySelector("footer");
+            footerEl.append(answerEl);
     
-    var footer = document.querySelector("footer");
+    
      
-        // setTimeout(console.log("suppose to delay 2 sec"), 2000);
+        setTimeout(console.log("suppose to delay 2 sec"), 2000);
         // var delay = setTimeout(console.log("suppose to delay 2 sec", 2000);
         // clearTimeout(delay);
         // pageContentEl.removeChild(footer);
@@ -189,7 +189,10 @@ var buttonHandler = function(event) {
         console.log("but1", targetEl);
         if (trueAnswer[index] === "btn1") {
             answer = true;
-        } else { answer = false;}
+            timeLimit = timeLimit + 2;
+        } else { answer = false;
+            timeLimit = timeLimit - 10;
+            }
 
         addFooterEl(answer);
         removeCardEl();
@@ -199,7 +202,10 @@ var buttonHandler = function(event) {
                 console.log("but2", targetEl);
                 if (trueAnswer[index] === "btn2") {
                     answer = true;
-                } else { answer = false;}
+                    timeLimit = timeLimit + 2;
+                } else { answer = false;
+                    timeLimit = timeLimit - 10;
+                    }
 
                 addFooterEl(answer);
                 removeCardEl();
@@ -209,7 +215,10 @@ var buttonHandler = function(event) {
                 console.log("but3", targetEl);
                 if (trueAnswer[index] === "btn3") {
                     answer = true;
-                } else { answer = false;}
+                    timeLimit = timeLimit + 2;
+                } else { answer = false;
+                    timeLimit = timeLimit - 10;
+                    }
 
                 addFooterEl(answer);
                 removeCardEl();
@@ -219,7 +228,10 @@ var buttonHandler = function(event) {
                 console.log("but4", targetEl);
                 if (trueAnswer[index] === "btn4") {
                     answer = true;
-                } else { answer = false;}
+                    timeLimit = timeLimit + 2;
+                } else { answer = false;
+                    timeLimit = timeLimit - 10;
+                    }
 
                 addFooterEl(answer);
                 removeCardEl();
@@ -231,4 +243,4 @@ var buttonHandler = function(event) {
 
 pageContentEl.addEventListener("click", buttonHandler);
 
- createCardEl();
+createCardEl();
