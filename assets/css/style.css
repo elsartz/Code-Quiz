@@ -35,6 +35,14 @@ main {
     margin: 2px;
 }
 
+#btn:active {
+    background-color: darkorchid;
+}
+
+.btn:active {
+    background-color: darkorchid;
+}
+
 #btn a {
     color: white;
 }

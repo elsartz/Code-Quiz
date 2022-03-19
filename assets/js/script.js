@@ -15,16 +15,19 @@ var startCountDown = setInterval(countDown, 1000);
 var timeEl = document.querySelector(".time");
     // timeEl.textContent = "Time:" + timeLimit;
 
-
+var index = 0;
 var randomNumber = function (min, questionCounter) {
     var result = Math.floor(Math.random() * (questionCounter - 0));
+    index = result;
     return result;
   };
   console.log(randomNumber(0,5));
+  console.log(index);
   
 
 var questionCards = [
-         { h1:"Commonly used data types Do NOT include:", 
+         { h1:"Commonly used data types Do NOT include:",
+            correct: "btn3", 
                 buttons: { 
                     btn1:{ txt:"1.strings", value: false}, 
                     btn2:{ txt:"2.booleans", value: false}, 
@@ -33,6 +36,7 @@ var questionCards = [
                 }
              },
          { h1:"The condition in an if/else statement is enclosed with __________.", 
+         correct: "btn2",
                 buttons: { 
                     btn1:{ txt:"1.quotes", value: false}, 
                     btn2:{ txt:"2.curly brackets", value: true}, 
@@ -41,6 +45,7 @@ var questionCards = [
                 }
             }, 
          { h1:"Arrays in Javascript can be used to store __________.", 
+         correct: "btn4",
                 buttons: { 
                     btn1:{ txt:"1.numbers and strings", value: false}, 
                     btn2:{ txt:"2.other arrays", value: false}, 
@@ -49,6 +54,7 @@ var questionCards = [
                 }
             },
          { h1:"String values must be enclosed within ________ when being assigned to variables.", 
+         correct: "btn3",
                 buttons: { 
                     btn1:{ txt:"1.commas", value: false}, 
                     btn2:{ txt:"2.curly brackets", value: false}, 
@@ -57,6 +63,7 @@ var questionCards = [
                 }
             },
          { h1:"A very useful tool used during development and debugging for printing content to the debugger is:", 
+         correct: "btn4",
                 buttons: { 
                     btn1:{ txt:"1.Javascript", value: false}, 
                     btn2:{ txt:"2.terminal/bash", value: false}, 
@@ -66,11 +73,11 @@ var questionCards = [
             },
         ];
 
-var trueAnswer = [  questionCards[0].buttons.btn3.value,
-                    questionCards[1].buttons.btn2.value,
-                    questionCards[2].buttons.btn4.value,
-                    questionCards[3].buttons.btn3.value,
-                    questionCards[4].buttons.btn4.value
+var trueAnswer = [  questionCards[0].correct,
+                    questionCards[1].correct,
+                    questionCards[2].correct,
+                    questionCards[3].correct,
+                    questionCards[4].correct
                 ];
 
         // console.log(trueAnswer);
@@ -78,6 +85,7 @@ var trueAnswer = [  questionCards[0].buttons.btn3.value,
 var pageContentEl = document.querySelector("#challenge");
 
 var currentCard = questionCards[randomNumber(0,5)];
+
 
 var createCardEl = function() {
 
@@ -134,7 +142,7 @@ function removeCardEl() {
     var answerEl = document.createElement("footer");
         answerEl.className = "footer";
 
-        if (true) {
+        if (trueAnswer[index] === currentCard.correct) {
             answerEl.textContent = "Correct!";
         } else {
             answerEl.textContent = "Wrong!";
@@ -158,11 +166,11 @@ function clearScore() {
 
 }
 
-//  var optionButtonsEl = document.createElement("section");
+  var optionButtonsEl = document.createElement("section");
  
         
 var buttonHandler = function(event) {
-debugger;
+// debugger;
     addFooterEl();
     // for (var i=0; i < 2000; i++){};
     removeCardEl();
@@ -173,4 +181,4 @@ debugger;
 
 pageContentEl.addEventListener("click", buttonHandler);
 
-createCardEl();
+ createCardEl();
