@@ -89,13 +89,12 @@ var currentCard = questionCards[randomNumber(0,5)];
 
 var createCardEl = function() {
 
-    // var currentCard = questionCards[randomNumber(0,5)];
-    // console.log(currentCard);
+    var currentCard = questionCards[randomNumber(0,5)];
+    console.log(currentCard);
 
     var questionEl = document.createElement("h2");
         questionEl.className = "question-header";
         questionEl.textContent = currentCard.h1;
-        // questionEl.setAttribute("data-id", randomNumber);
         pageContentEl.appendChild(questionEl);
 
       var optionButtonsEl = document.createElement("section");
@@ -106,7 +105,6 @@ var createCardEl = function() {
         var firstButtonEl = document.createElement("button");
             firstButtonEl.className = "b1";
             firstButtonEl.setAttribute("id","btn");
-            // firstButtonEl.setAttribute("onclick",addFooterEl);
             firstButtonEl.textContent = currentCard.buttons.btn1.txt;
             
             optionButtonsEl.appendChild(firstButtonEl);
@@ -146,6 +144,7 @@ function removeCardEl() {
 }
 
  function addFooterEl(answer) {
+    //  debugger;
      var answerEl = document.createElement("footer");
          answerEl.className = "footer";
     
@@ -161,11 +160,19 @@ function removeCardEl() {
             footerEl.append(answerEl);
     
     
-     
-        setTimeout(console.log("suppose to delay 2 sec"), 2000);
-        // var delay = setTimeout(console.log("suppose to delay 2 sec", 2000);
-        // clearTimeout(delay);
-        // pageContentEl.removeChild(footer);
+            var timeLeft = 1;
+            var timeInterval = setInterval(function() {
+                if ( timeLeft > 0) {
+                //   timerEl.textContent = timeLeft + "seconds remaining";
+                  timeLeft--;
+                } else if (timeLeft === 0) {
+                     answerEl.remove(footerEl);
+                    // answerEl.textContent = "";
+                }
+              },
+              1000);
+            
+         
 }
 
 function score(name) {
@@ -182,7 +189,7 @@ function clearScore() {
  
         
 var buttonHandler = function(event) {
-// debugger;
+
     var targetEl = event.target;
 
     if (targetEl.matches(".b1")) {
@@ -195,6 +202,7 @@ var buttonHandler = function(event) {
             }
 
         addFooterEl(answer);
+        
         removeCardEl();
         createCardEl();
         } else
@@ -221,7 +229,9 @@ var buttonHandler = function(event) {
                     }
 
                 addFooterEl(answer);
+                
                 removeCardEl();
+                // debugger;
                 createCardEl();
         } else
             if (targetEl.matches(".b4")) {

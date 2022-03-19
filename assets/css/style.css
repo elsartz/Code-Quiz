@@ -64,6 +64,7 @@ main {
     border-top: 2px solid grey;
     margin-top: 20px;
     font-size: xx-large;
+    margin-left: 50px;
 }
 
 .score-screen {
