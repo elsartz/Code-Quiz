@@ -163,8 +163,9 @@ function addFooterEl(answer) {
 }
 
 function score(name) {
+    window.location.href = "scoreboard.html";
     var highScoreEl = document.querySelector("form");
-        highScoreEl.innerHTML = "<input type='text'>" + "name =''" + "</input>";
+        highScoreEl.innerHTML = "Your name";
         document.getElementsByName(name).submit();
 }
 
@@ -174,13 +175,14 @@ function clearScore() {
 
 var optionButtonsEl = document.createElement("section");
  
-        
+var totalCards = 1;
+var i =1;
 var buttonHandler = function(event) {
-
+    
     var targetEl = event.target;
 
     if (targetEl.matches(".b1")) {
-        console.log("but1", targetEl);
+        // console.log("but1", targetEl);
         if (trueAnswer[index] === "btn1") {
             answer = true;
             timeLimit = timeLimit + 2;
@@ -189,12 +191,13 @@ var buttonHandler = function(event) {
             }
 
         addFooterEl(answer);
-        
         removeCardEl();
+        
         createCardEl();
+        totalCards++;
         } else
             if (targetEl.matches(".b2")) {
-                console.log("but2", targetEl);
+                // console.log("but2", targetEl);
                 if (trueAnswer[index] === "btn2") {
                     answer = true;
                     timeLimit = timeLimit + 2;
@@ -205,9 +208,10 @@ var buttonHandler = function(event) {
                 addFooterEl(answer);
                 removeCardEl();
                 createCardEl();
+                totalCards++;
         } else
             if (targetEl.matches(".b3")) {
-                console.log("but3", targetEl);
+                // console.log("but3", targetEl);
                 if (trueAnswer[index] === "btn3") {
                     answer = true;
                     timeLimit = timeLimit + 2;
@@ -220,6 +224,7 @@ var buttonHandler = function(event) {
                 removeCardEl();
                 // debugger;
                 createCardEl();
+                totalCards++;
         } else
             if (targetEl.matches(".b4")) {
                 console.log("but4", targetEl);
@@ -233,7 +238,12 @@ var buttonHandler = function(event) {
                 addFooterEl(answer);
                 removeCardEl();
                 createCardEl(); 
-        }    
+                totalCards++;
+        } 
+    if (totalCards > questionCounter || timeLimit === 0) {
+        pageContentEl.removeEventListener("click", buttonHandler);
+        score();
+    }   
 }
 
 
