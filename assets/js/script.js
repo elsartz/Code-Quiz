@@ -1,19 +1,17 @@
 var questionCounter = 5;
 var timeLimit = 75;
 
- var countDown = function() {
-     timeLimit--;
-    //  console.log(timeLimit);
+var countDown = function() {
+    timeLimit--;
     timeEl.textContent = "Time:" + timeLimit;
-     if (timeLimit === 0) {
+    if (timeLimit === 0) {
          clearInterval(startCountDown);
-     }
- }
+    }
+}
 
 var startCountDown = setInterval(countDown, 1000);
 
 var timeEl = document.querySelector(".time");
-    // timeEl.textContent = "Time:" + timeLimit;
 
 var index = 0;
 var randomNumber = function (min, questionCounter) {
@@ -133,22 +131,17 @@ var createCardEl = function() {
 
 
 
-function removeCardEl() {
-
-   
+function removeCardEl() {  
      var optButtons = document.querySelector("section");
         pageContentEl.removeChild(optButtons);
      var header = document.querySelector("h2");
-        pageContentEl.removeChild(header);
-    
+        pageContentEl.removeChild(header);    
 }
 
- function addFooterEl(answer) {
-    //  debugger;
+function addFooterEl(answer) {
      var answerEl = document.createElement("footer");
          answerEl.className = "footer";
     
-
         if (answer) {
             answerEl.textContent = "Correct!";
             console.log("correct");
@@ -159,20 +152,14 @@ function removeCardEl() {
         var footerEl = document.querySelector("footer");
             footerEl.append(answerEl);
     
-    
             var timeLeft = 1;
             var timeInterval = setInterval(function() {
                 if ( timeLeft > 0) {
-                //   timerEl.textContent = timeLeft + "seconds remaining";
                   timeLeft--;
                 } else if (timeLeft === 0) {
                      answerEl.remove(footerEl);
-                    // answerEl.textContent = "";
-                }
-              },
-              1000);
-            
-         
+                    }
+            }, 1000);
 }
 
 function score(name) {
@@ -185,7 +172,7 @@ function clearScore() {
 
 }
 
-  var optionButtonsEl = document.createElement("section");
+var optionButtonsEl = document.createElement("section");
  
         
 var buttonHandler = function(event) {
