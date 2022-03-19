@@ -90,7 +90,7 @@ var createCardEl = function() {
         // questionEl.setAttribute("data-id", randomNumber);
         pageContentEl.appendChild(questionEl);
 
-     var optionButtonsEl = document.createElement("section");
+      var optionButtonsEl = document.createElement("section");
           optionButtonsEl.className = "options";
         
          pageContentEl.appendChild(optionButtonsEl);
@@ -158,19 +158,19 @@ function clearScore() {
 
 }
 
-var optionButtonsEl = document.createElement("section");
-    optionButtonsEl.className = "options";
+//  var optionButtonsEl = document.createElement("section");
+ 
         
 var buttonHandler = function(event) {
-    // debugger;
+debugger;
     addFooterEl();
-    for (var i=0; i < 2000; i++){};
-    setTimeout(removeCardEl(), 2000);
+    // for (var i=0; i < 2000; i++){};
+    removeCardEl();
     createCardEl();
     
     
 }
 
-optionButtonsEl.addEventListener("click", buttonHandler);
+pageContentEl.addEventListener("click", buttonHandler);
 
 createCardEl();
