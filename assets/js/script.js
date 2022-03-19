@@ -104,23 +104,31 @@ var createCardEl = function() {
          pageContentEl.appendChild(optionButtonsEl);
 
         var firstButtonEl = document.createElement("button");
+            firstButtonEl.className = "b1";
+            firstButtonEl.setAttribute("id","btn");
+            // firstButtonEl.setAttribute("onclick",addFooterEl);
             firstButtonEl.textContent = currentCard.buttons.btn1.txt;
-            firstButtonEl.className = "btn";
+            
             optionButtonsEl.appendChild(firstButtonEl);
         
         var secondButtonEl = document.createElement("button");
+            secondButtonEl.className = "b2";
+            secondButtonEl.setAttribute("id", "btn");
             secondButtonEl.textContent = currentCard.buttons.btn2.txt;
-            secondButtonEl.className = "btn";
+            
             optionButtonsEl.appendChild(secondButtonEl);
 
         var thirdButtonEl = document.createElement("button");
+            thirdButtonEl.className = "b3";
+            thirdButtonEl.setAttribute("id", "btn");
             thirdButtonEl.textContent = currentCard.buttons.btn3.txt;
-            thirdButtonEl.className = "btn";
             optionButtonsEl.appendChild(thirdButtonEl);
     
         var forthButtonEl = document.createElement("button");
+            forthButtonEl.className = "b4";
+            forthButtonEl.setAttribute("id", "btn");
             forthButtonEl.textContent = currentCard.buttons.btn4.txt;
-            forthButtonEl.className = "btn";
+            
             optionButtonsEl.appendChild(forthButtonEl);
 
             
@@ -138,21 +146,23 @@ function removeCardEl() {
     
 }
 
- function addFooterEl() {
+ function addFooterEl(answer) {
     var answerEl = document.createElement("footer");
         answerEl.className = "footer";
 
-        if (trueAnswer[index] === currentCard.correct) {
+        if (answer) {
             answerEl.textContent = "Correct!";
+            console.log("correct");
         } else {
             answerEl.textContent = "Wrong!";
+            console.log("wrong");
         }
 
     pageContentEl.appendChild(answerEl);
     
     var footer = document.querySelector("footer");
      
-        setTimeout(console.log("suppose to delay 2 sec"), 20000);
+        setTimeout(console.log("suppose to delay 2 sec"), 2000);
         pageContentEl.removeChild(footer);
 }
 
@@ -171,11 +181,42 @@ function clearScore() {
         
 var buttonHandler = function(event) {
 // debugger;
-    addFooterEl();
-    // for (var i=0; i < 2000; i++){};
+    var targetEl = event.target;
+
+    if (targetEl.matches(".b1")) {console.log("but1", targetEl);
+        if (trueAnswer[index] === "btn1") {
+            answer = true;
+        } else { answer = false;}
+        addFooterEl(answer);
+        removeCardEl();
+        createCardEl();
+} else
+    if (targetEl.matches(".b2")) {console.log("but2", targetEl);
+    if (trueAnswer[index] === "btn2") {
+        answer = true;
+    } else { answer = false;}
+    addFooterEl(answer);
     removeCardEl();
     createCardEl();
+} else
+    if (targetEl.matches(".b3")) {console.log("but3", targetEl);
+    if (trueAnswer[index] === "btn3") {
+        answer = true;
+    } else { answer = false;}
+    addFooterEl(answer);
+    removeCardEl();
+    createCardEl();
+} else
+    if (targetEl.matches(".b4")) {console.log("but4", targetEl);
+    if (trueAnswer[index] === "btn4") {
+        answer = true;
+    } else { answer = false;}
+    addFooterEl(answer);
+    removeCardEl();
+    createCardEl();
+}
     
+       
     
 }
 
