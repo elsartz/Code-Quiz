@@ -25,22 +25,24 @@
     <main class="challenge" id="challenge">
        
     </main>
-    <form id="scoreForm">
-        <div class="form-group">
-            <h2>All done!</h2>
-            <p>Your final score is</p>
-            <input type="text" id="name" placeholder="Enter Initials" />
-          </div>
-        <div class="form-group">
-          <button class="btn" id="subbtn" type="submit">Submit</button>
-        </div>
-      </form>
-      <article class="score-screen" id="score-screen">
-        <h1>High scores</h1>
-        <ul class="scorelist" id="scorelist"></ul>
-        <button class="btn" id="btn"><a href="index.html">Go back</a></button>
-        <button class="btn" id="btn" onclick="clearScore()">Clear high scores</button>
-    </article>
+        <form id="scoreForm">
+            <div class="form-group">
+                <h2>All done!</h2>
+                <p>Your final score is</p>
+                <input type="text" name="namein" id="name" placeholder="Enter Initials" />
+            </div>
+            <div class="form-group">
+            <button class="btn" id="subbtn" type="submit">Submit</button>
+            </div>
+        </form>
+
+        <article class="score-screen" id="score-screen">
+            <h1>High scores</h1>
+            <ul class="scorelist" id="scorelist"></ul>
+            <button class="btn" id="btn"><a href="index.html">Go back</a></button>
+            <button class="btn" id="btn" onclick="clearScore()">Clear high scores</button>
+        </article>
+
     <footer></footer>
     
     <script src="./assets/js/script.js"></script>

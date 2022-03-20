@@ -32,8 +32,8 @@ var randomNumber = function (min, questionCounter) {
     index = result;
     return result;
   };
-  console.log(randomNumber(0,5));
-  console.log(index);
+//   console.log(randomNumber(0,5));
+//   console.log(index);
   
 
 var questionCards = [
@@ -116,7 +116,7 @@ var newarray=[result];
 var createCardEl = function() {
 
     var currentCard = questionCards[randomNumber(0,5)];
-    console.log(currentCard);
+    // console.log(currentCard);
 
     var questionEl = document.createElement("h2");
         questionEl.className = "question-header";
@@ -191,7 +191,7 @@ function addFooterEl(answer) {
 }
 
 
-
+var highScore = [];
 var scoreF = function() {
     
 
@@ -199,11 +199,12 @@ var scoreF = function() {
     var submitEl = document.querySelector("#subbtn");           
 
     console.log(highScoreEl);
+    console.log(submitEl);
     
     submitEl.addEventListener("click", addplayer());
     
     function addplayer(event) {
-        
+        event.preventDefault();
         var playerInput = highScoreEl.value;
         var playerInfo = {
             initials: playerInput,
@@ -211,14 +212,16 @@ var scoreF = function() {
         }
         console.log(playerInput);
 
-        window.localStorage.setItem("nameScore", JSON.stringify(playerInfo));
+        highScore.push(playerInfo);
+        window.localStorage.setItem("namein", JSON.stringify(highScore));
         console.log(playerInfo);
     }
 
     var nameScore = localStorage.getItem("playerInfo");
     
-        
-        articleEl.style.display = "block";
+    
+
+    // articleEl.style.display = "block";
     
     var hallOfFameEl = document.querySelector("ul");
     var fameEl = document.createElement("li");
@@ -227,6 +230,7 @@ var scoreF = function() {
 
         console.log(fameEl);
         // debugger;  
+        
 }
 
 
@@ -311,12 +315,11 @@ var buttonHandler = function(event) {
         score = timeLimit;
         removeCardEl();
         formEl.style.display = "block";
-        event.preventDefault();
+        // event.preventDefault();
         
         
         scoreF();
-        formEl.style.display = "none";
-        articleEl.style.display = "block";
+        // articleEl.style.display = "block";
     }   
 }
 
