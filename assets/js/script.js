@@ -1,17 +1,18 @@
 var questionCounter = 5;
 var timeLimit = 75;
 var score = 0;
-// var countDown = function() {
-//     timeLimit--;
-//     timeEl.textContent = "Time:" + timeLimit;
-//     if (timeLimit === 0) {
-//          clearInterval(startCountDown);
-//     }
-// }
+var totalCards = 1;
+var countDown = function() {
+     timeLimit--;
+     timeEl.textContent = "Time:" + timeLimit;
+     if (timeLimit === 0 || totalCards >4) {
+          clearInterval(startCountDown);
+     }
+ }
 
-// var startCountDown = setInterval(countDown, 1000);
+ var startCountDown = setInterval(countDown, 1000);
 
-// var timeEl = document.querySelector(".time");
+ var timeEl = document.querySelector(".time");
 
 var index = 0;
 var randomNumber = function (min, questionCounter) {
@@ -164,40 +165,41 @@ function addFooterEl(answer) {
 
 
 
-function score() {
+var score = function() {
     debugger;
 
     var highScoreEl = document.querySelector("input");
     var submitEl = document.querySelector("#subbtn");
 
-    var player = document.querySelector("li");         
+            
 
-    pageContentEl.removeEventListener("click", buttonHandler);
+    // pageContentEl.removeEventListener("click", buttonHandler);
 
-    submitEl.addEventListener("click", function() {
+    submitEl.addEventListener("click", addplayer);
+    
+    function addplayer(event) {
         event.preventDefault();
         var playerInput = highScoreEl.value;
         var playerInfo = {
             initials: playerInput,
             score: timeLimit
         }
+console.log(playerInput);
         localStorage.setItem("score", JSON.stringify(timeLimit));
+        console.log(JSON.stringify(timeLimit));
         localStorage.setItem("player", JSON.stringify(playerInput));
-    });
+    }
 
     
-    window.location.href = "scoreboard.html";
+    // window.location.href = "scoreboard.html";
 
     var hallOfFameEl = document.querySelector("ul");
-    var fame = document.createElement("li");
-        fame.textContent = localStorage.getItem()
+    var fameEl = document.createElement("li");
+        fameEl.textContent = localStorage.getItem(initials);
+        fameEl.appendChild(hallOfFameEl);
 
-
-
-    
-    //   event.preventDefault;
-    var formHighEl = document.querySelector("#form");
-        formHighEl.appendChild(player);
+        console.log(fameEl);
+        event.preventDefault();
 }
 
 
@@ -214,14 +216,14 @@ var formEl = document.getElementById("scoreForm");
 
 var optionButtonsEl = document.createElement("section");
  
-var totalCards = 1;
+
 var i =1;
 var buttonHandler = function(event) {
     
     var targetEl = event.target;
 
     if (targetEl.matches(".b1")) {
-        // console.log("but1", targetEl);
+        
         if (trueAnswer[index] === "btn1") {
             answer = true;
             timeLimit = timeLimit + 2;
@@ -236,7 +238,7 @@ var buttonHandler = function(event) {
         totalCards++;
         } else
             if (targetEl.matches(".b2")) {
-                // console.log("but2", targetEl);
+                
                 if (trueAnswer[index] === "btn2") {
                     answer = true;
                     timeLimit = timeLimit + 2;
@@ -246,11 +248,12 @@ var buttonHandler = function(event) {
 
                 addFooterEl(answer);
                 removeCardEl();
+
                 createCardEl();
                 totalCards++;
         } else
             if (targetEl.matches(".b3")) {
-                // console.log("but3", targetEl);
+                
                 if (trueAnswer[index] === "btn3") {
                     answer = true;
                     timeLimit = timeLimit + 2;
@@ -258,10 +261,9 @@ var buttonHandler = function(event) {
                     timeLimit = timeLimit - 10;
                     }
 
-                addFooterEl(answer);
-                
+                addFooterEl(answer);                
                 removeCardEl();
-                // debugger;
+                
                 createCardEl();
                 totalCards++;
         } else
@@ -276,18 +278,19 @@ var buttonHandler = function(event) {
 
                 addFooterEl(answer);
                 removeCardEl();
+
                 createCardEl(); 
                 totalCards++;
         } 
     if (totalCards > questionCounter || timeLimit === 0) {
-        // pageContentEl.removeEventListener("click", buttonHandler);
+        
         score = timeLimit;
         removeCardEl();
         formEl.style.display = "block";
         
         
         
-        score();
+        score();event.preventDefault();
     }   
 }
 
