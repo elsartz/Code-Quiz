@@ -172,10 +172,10 @@ function addFooterEl(answer) {
     
         if (answer) {
             answerEl.textContent = "Correct!";
-            console.log("correct");
+            
         } else {
             answerEl.textContent = "Wrong!";
-            console.log("wrong");
+            
         }
         var footerEl = document.querySelector("footer");
             footerEl.append(answerEl);
@@ -201,27 +201,26 @@ var scoreF = function() {
     console.log(highScoreEl);
     console.log(submitEl);
     
-    submitEl.addEventListener("click", addplayer());
-    
-    function addplayer(event) {
-        event.preventDefault();
+    submitEl.addEventListener("click", function (event) {
+          event.preventDefault();
         var playerInput = highScoreEl.value;
         var playerInfo = {
             initials: playerInput,
             score: timeLimit
         }
-        console.log(playerInput);
+        // console.log(playerInput);
 
         highScore.push(playerInfo);
         window.localStorage.setItem("namein", JSON.stringify(highScore));
-        console.log(playerInfo);
-    }
-
-    var nameScore = localStorage.getItem("playerInfo");
-    
+        // console.log(playerInfo);
     
 
-    // articleEl.style.display = "block";
+    
+    var nameScore = localStorage.getItem("namein");
+    console.log(nameScore);
+    
+
+    //  articleEl.style.display = "block";
     
     var hallOfFameEl = document.querySelector("ul");
     var fameEl = document.createElement("li");
@@ -230,7 +229,7 @@ var scoreF = function() {
 
         console.log(fameEl);
         // debugger;  
-        
+    });   
 }
 
 
@@ -296,7 +295,7 @@ var buttonHandler = function(event) {
                 totalCards++;
         } else
             if (targetEl.matches(".b4")) {
-                console.log("but4", targetEl);
+                
                 if (trueAnswer[index] === "btn4") {
                     answer = true;
                     timeLimit = timeLimit + 2;
@@ -315,10 +314,11 @@ var buttonHandler = function(event) {
         score = timeLimit;
         removeCardEl();
         formEl.style.display = "block";
-        // event.preventDefault();
         
         
         scoreF();
+        // formEl.style.display = "none";
+
         // articleEl.style.display = "block";
     }   
 }
