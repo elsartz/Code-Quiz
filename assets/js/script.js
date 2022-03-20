@@ -184,18 +184,20 @@ var score = function() {
             initials: playerInput,
             score: timeLimit
         }
-console.log(playerInput);
-        localStorage.setItem("score", JSON.stringify(timeLimit));
-        console.log(JSON.stringify(timeLimit));
-        localStorage.setItem("player", JSON.stringify(playerInput));
+        console.log(playerInput);
+
+        localStorage.setItem("nameScore", JSON.stringify(playerInfo));
+
+        
     }
 
     
-    // window.location.href = "scoreboard.html";
-
+        window.location.href = "scoreboard.html";
+        
+    var nameScore = localStorage.getItem("playerInfo");
     var hallOfFameEl = document.querySelector("ul");
     var fameEl = document.createElement("li");
-        fameEl.textContent = localStorage.getItem(initials);
+        fameEl.textContent = "-name-";
         fameEl.appendChild(hallOfFameEl);
 
         console.log(fameEl);
