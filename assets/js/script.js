@@ -1,6 +1,18 @@
 var questionCounter = 5;
 var timeLimit = 75;
 var score = 0;
+
+
+var formEl = document.getElementById("scoreForm");
+    formEl.style.display = "none";
+
+var articleEl = document.getElementById("score-screen");
+    articleEl.style.display = "none";
+
+
+
+
+
 var totalCards = 1;
 var countDown = function() {
      timeLimit--;
@@ -180,14 +192,14 @@ function addFooterEl(answer) {
 
 
 
-var score = function() {
+var scoreF = function() {
     
 
     var highScoreEl = document.querySelector("name");
     var submitEl = document.querySelector("#subbtn");           
 
     console.log(highScoreEl);
-
+    
     // submitEl.addEventListener("click", addplayer());
      event.preventDefault();
     // function addplayer(event) {
@@ -205,7 +217,7 @@ var score = function() {
 
     var nameScore = localStorage.getItem("playerInfo");
     
-        window.location.href = "scoreboard.html" + nameScore;
+        // window.location.href = "scoreboard.html" + nameScore;
         
     
     var hallOfFameEl = document.querySelector("ul");
@@ -214,7 +226,7 @@ var score = function() {
         fameEl.appendChild(hallOfFameEl);
 
         console.log(fameEl);
-        
+        debugger;  
 }
 
 
@@ -222,10 +234,6 @@ function clearScore() {
     var clearScoreBtn = document.querySelector("onclick");
     window.localStorage.clear();
 }
-
-
-var formEl = document.getElementById("scoreForm");
-    formEl.style.display = "none";
 
 
 
@@ -303,10 +311,12 @@ var buttonHandler = function(event) {
         score = timeLimit;
         removeCardEl();
         formEl.style.display = "block";
+        event.preventDefault();
         
         
-        
-        score();event.preventDefault();
+        scoreF();
+        formEl.style.display = "none";
+        articleEl.style.display = "block";
     }   
 }
 
