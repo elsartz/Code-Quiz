@@ -195,14 +195,14 @@ function addFooterEl(answer) {
 var scoreF = function() {
     
 
-    var highScoreEl = document.querySelector("name");
+    var highScoreEl = document.querySelector("#name");
     var submitEl = document.querySelector("#subbtn");           
 
     console.log(highScoreEl);
     
-    // submitEl.addEventListener("click", addplayer());
-     event.preventDefault();
-    // function addplayer(event) {
+    submitEl.addEventListener("click", addplayer());
+    
+    function addplayer(event) {
         
         var playerInput = highScoreEl.value;
         var playerInfo = {
@@ -213,12 +213,12 @@ var scoreF = function() {
 
         window.localStorage.setItem("nameScore", JSON.stringify(playerInfo));
         console.log(playerInfo);
-    // }
+    }
 
     var nameScore = localStorage.getItem("playerInfo");
     
-        // window.location.href = "scoreboard.html" + nameScore;
         
+        articleEl.style.display = "block";
     
     var hallOfFameEl = document.querySelector("ul");
     var fameEl = document.createElement("li");
@@ -226,7 +226,7 @@ var scoreF = function() {
         fameEl.appendChild(hallOfFameEl);
 
         console.log(fameEl);
-        debugger;  
+        // debugger;  
 }
 
 
