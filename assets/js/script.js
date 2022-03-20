@@ -1,17 +1,17 @@
 var questionCounter = 5;
 var timeLimit = 75;
+var score = 0;
+// var countDown = function() {
+//     timeLimit--;
+//     timeEl.textContent = "Time:" + timeLimit;
+//     if (timeLimit === 0) {
+//          clearInterval(startCountDown);
+//     }
+// }
 
-var countDown = function() {
-    timeLimit--;
-    timeEl.textContent = "Time:" + timeLimit;
-    if (timeLimit === 0) {
-         clearInterval(startCountDown);
-    }
-}
+// var startCountDown = setInterval(countDown, 1000);
 
-var startCountDown = setInterval(countDown, 1000);
-
-var timeEl = document.querySelector(".time");
+// var timeEl = document.querySelector(".time");
 
 var index = 0;
 var randomNumber = function (min, questionCounter) {
@@ -162,16 +162,55 @@ function addFooterEl(answer) {
             }, 1000);
 }
 
-function score(name) {
+
+
+function score() {
+    debugger;
+
+    var highScoreEl = document.querySelector("input");
+    var submitEl = document.querySelector("#subbtn");
+
+    var player = document.querySelector("li");         
+
+    pageContentEl.removeEventListener("click", buttonHandler);
+
+    submitEl.addEventListener("click", function() {
+        event.preventDefault();
+        var playerInput = highScoreEl.value;
+        var playerInfo = {
+            initials: playerInput,
+            score: timeLimit
+        }
+        localStorage.setItem("score", JSON.stringify(timeLimit));
+        localStorage.setItem("player", JSON.stringify(playerInput));
+    });
+
+    
     window.location.href = "scoreboard.html";
-    var highScoreEl = document.querySelector("form");
-        highScoreEl.innerHTML = "Your name";
-        document.getElementsByName(name).submit();
+
+    var hallOfFameEl = document.querySelector("ul");
+    var fame = document.createElement("li");
+        fame.textContent = localStorage.getItem()
+
+
+
+    
+    //   event.preventDefault;
+    var formHighEl = document.querySelector("#form");
+        formHighEl.appendChild(player);
 }
+
 
 function clearScore() {
 
 }
+
+
+var formEl = document.getElementById("scoreForm");
+    formEl.style.display = "none";
+
+
+
 
 var optionButtonsEl = document.createElement("section");
  
@@ -241,7 +280,13 @@ var buttonHandler = function(event) {
                 totalCards++;
         } 
     if (totalCards > questionCounter || timeLimit === 0) {
-        pageContentEl.removeEventListener("click", buttonHandler);
+        // pageContentEl.removeEventListener("click", buttonHandler);
+        score = timeLimit;
+        removeCardEl();
+        formEl.style.display = "block";
+        
+        
+        
         score();
     }   
 }

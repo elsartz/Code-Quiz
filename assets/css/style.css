@@ -59,6 +59,20 @@ main {
 
 }
 
+#scoreForm {
+    margin-left: 50px;
+    font-size: xx-large;
+}
+
+#scoreForm h2 {
+    
+}
+
+#scoreForm p {
+
+}
+
+
 .footer {
     width: 80%;
     border-top: 2px solid grey;
