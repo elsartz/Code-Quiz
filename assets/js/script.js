@@ -85,6 +85,21 @@ var pageContentEl = document.querySelector("#challenge");
 
 var currentCard = questionCards[randomNumber(0,5)];
 
+function myf () {
+var newarray=[result];
+    var i = 0;
+    while (newarray.length < 5) {
+        if (newarray[i] === result) {
+            result = Math.floor(Math.random() * (questionCounter - 0));
+        }else {
+            newarray.push(result);
+            i++;
+            
+        }
+    }
+    console.log(newarray);
+}
+
 
 var createCardEl = function() {
 
@@ -166,19 +181,17 @@ function addFooterEl(answer) {
 
 
 var score = function() {
-    debugger;
-
-    var highScoreEl = document.querySelector("input");
-    var submitEl = document.querySelector("#subbtn");
-
-            
-
-    // pageContentEl.removeEventListener("click", buttonHandler);
-
-    submitEl.addEventListener("click", addplayer);
     
-    function addplayer(event) {
-        event.preventDefault();
+
+    var highScoreEl = document.querySelector("name");
+    var submitEl = document.querySelector("#subbtn");           
+
+    console.log(highScoreEl);
+
+    // submitEl.addEventListener("click", addplayer());
+     event.preventDefault();
+    // function addplayer(event) {
+        
         var playerInput = highScoreEl.value;
         var playerInfo = {
             initials: playerInput,
@@ -186,27 +199,28 @@ var score = function() {
         }
         console.log(playerInput);
 
-        localStorage.setItem("nameScore", JSON.stringify(playerInfo));
+        window.localStorage.setItem("nameScore", JSON.stringify(playerInfo));
+        console.log(playerInfo);
+    // }
 
-        
-    }
-
-    
-        window.location.href = "scoreboard.html";
-        
     var nameScore = localStorage.getItem("playerInfo");
+    
+        window.location.href = "scoreboard.html" + nameScore;
+        
+    
     var hallOfFameEl = document.querySelector("ul");
     var fameEl = document.createElement("li");
-        fameEl.textContent = "-name-";
+        fameEl.textContent = nameScore;
         fameEl.appendChild(hallOfFameEl);
 
         console.log(fameEl);
-        event.preventDefault();
+        
 }
 
 
 function clearScore() {
-
+    var clearScoreBtn = document.querySelector("onclick");
+    window.localStorage.clear();
 }
 
 
