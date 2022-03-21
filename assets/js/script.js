@@ -8,7 +8,7 @@ var formEl = document.getElementById("scoreForm");
 
 // var articleEl = document.getElementById("score-screen");
 //     articleEl.style.display = "none";
-
+// I try to make it one page at the end but it was too late
 
 
 
@@ -192,7 +192,7 @@ function addFooterEl(answer) {
 
 
 var highScore = [];
-var scoreF = function() {
+var scoreFunction = function() {
     
 
     var highScoreEl = document.querySelector("#name");
@@ -202,7 +202,7 @@ var scoreF = function() {
     console.log(submitEl);
     
     submitEl.addEventListener("click", function (event) {
-        //   event.preventDefault();
+         event.preventDefault();
         var playerInput = highScoreEl.value;
         var playerInfo = {
             initials: playerInput,
@@ -212,7 +212,7 @@ var scoreF = function() {
 
         highScore.push(playerInfo);
         window.localStorage.setItem("namein", JSON.stringify(highScore));
-        // console.log(playerInfo);
+        console.log(highScore);
     
 
     
@@ -224,7 +224,7 @@ var scoreF = function() {
     
     var hallOfFameEl = document.querySelector("#scorelist");
     var fameEl = document.createElement("li");
-        fameEl.textContent = nameScore;
+        fameEl.textContent = highScoreEl.value;
         fameEl.append();
 
         console.log(fameEl);
@@ -316,7 +316,7 @@ var buttonHandler = function(event) {
         formEl.style.display = "block";
         
         
-        scoreF();
+        scoreFunction();
         // formEl.style.display = "none";
 
         

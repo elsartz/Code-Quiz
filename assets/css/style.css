@@ -64,14 +64,11 @@ main {
     font-size: xx-large;
 }
 
-#scoreForm h2 {
-    
+
+#list {
+    list-style: none;
+    background-color: rgb(196, 194, 194);
 }
-
-#scoreForm p {
-
-}
-
 
 .footer {
     width: 80%;
