@@ -2,7 +2,7 @@ var questionCounter = 5;
 var timeLimit = 75;
 var score = 0;
 
-
+var optionButtonsEl = document.createElement("section");
 var formEl = document.getElementById("scoreForm");
     formEl.style.display = "none";
 
@@ -12,7 +12,7 @@ var formEl = document.getElementById("scoreForm");
 
 
 
-
+// Control time and show at the page
 var totalCards = 1;
 var countDown = function() {
      timeLimit--;
@@ -191,48 +191,46 @@ function addFooterEl(answer) {
 }
 
 
-var highScore = [];
+// for future release var highScore = [];
 var scoreFunction = function() {
     
-
+    // select the elements for the submission
     var highScoreEl = document.querySelector("#name");
     var submitEl = document.querySelector("#subbtn");           
 
-    console.log(highScoreEl);
-    console.log(submitEl);
-    
+    // Function to handle the data
     submitEl.addEventListener("click", function (event) {
+
+        // stop the screen like pause for the game
          event.preventDefault();
+        // Player's information
         var playerInput = highScoreEl.value;
         var playerInfo = {
             initials: playerInput,
             score: timeLimit
         }
-        // console.log(playerInput);
-
-        highScore.push(playerInfo);
-        window.localStorage.setItem("namein", JSON.stringify(highScore));
-        console.log(highScore);
     
+        // highScore.push(playerInfo); for future release;
 
+        // save to localstorage
+        window.localStorage.setItem("namein", JSON.stringify(playerInfo));
+       
     
-    var nameScore = localStorage.getItem("namein");
+    // retrive from localstorage
+    var nameScore = JSON.parse(localStorage.getItem("namein"));
     console.log(nameScore);
     
-
-    //  articleEl.style.display = "block";
-    
+    // put it in a list on DOM    
     var hallOfFameEl = document.querySelector("#scorelist");
     var fameEl = document.createElement("li");
-        fameEl.textContent = highScoreEl.value;
+        fameEl.textContent = nameScore.initials + " " + nameScore.score;
         fameEl.append();
 
         console.log(fameEl);
-        // debugger;  
     });   
 }
 
-
+// Clear the High score board
 function clearScore() {
     var clearScoreBtn = document.querySelector("onclick");
     window.localStorage.clear();
@@ -241,7 +239,7 @@ function clearScore() {
 
 
 
-var optionButtonsEl = document.createElement("section");
+// var optionButtonsEl = document.createElement("section");
  
 
 var i =1;
@@ -310,21 +308,20 @@ var buttonHandler = function(event) {
                 totalCards++;
         } 
     if (totalCards > questionCounter || timeLimit === 0) {
-        
+        // set the score
         score = timeLimit;
+        // remove last question card
         removeCardEl();
+        // Show submit form
         formEl.style.display = "block";
-        
-        
+        // save to localstorage
         scoreFunction();
-        // formEl.style.display = "none";
-
-        
+                
     }   
     
 }
 
-
+// 
 
 pageContentEl.addEventListener("click", buttonHandler);
 
