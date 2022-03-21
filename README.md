@@ -8,4 +8,4 @@ Enough talking ... let's play!
 
 ![Quiz intro](https://github.com/elsartz/Code-Quiz/blob/main/Screenshot%202022-03-15%20215100.png)
 
-> :point_right: [Start the Quiz]()
+> :point_right: [Start the Quiz](https://elsartz.github.io/Code-Quiz/)
