@@ -6,8 +6,8 @@ var score = 0;
 var formEl = document.getElementById("scoreForm");
     formEl.style.display = "none";
 
-var articleEl = document.getElementById("score-screen");
-    articleEl.style.display = "none";
+// var articleEl = document.getElementById("score-screen");
+//     articleEl.style.display = "none";
 
 
 
@@ -202,7 +202,7 @@ var scoreF = function() {
     console.log(submitEl);
     
     submitEl.addEventListener("click", function (event) {
-          event.preventDefault();
+        //   event.preventDefault();
         var playerInput = highScoreEl.value;
         var playerInfo = {
             initials: playerInput,
@@ -222,10 +222,10 @@ var scoreF = function() {
 
     //  articleEl.style.display = "block";
     
-    var hallOfFameEl = document.querySelector("ul");
+    var hallOfFameEl = document.querySelector("#scorelist");
     var fameEl = document.createElement("li");
         fameEl.textContent = nameScore;
-        fameEl.appendChild(hallOfFameEl);
+        fameEl.append();
 
         console.log(fameEl);
         // debugger;  
@@ -319,8 +319,9 @@ var buttonHandler = function(event) {
         scoreF();
         // formEl.style.display = "none";
 
-        // articleEl.style.display = "block";
+        
     }   
+    
 }
 
 
