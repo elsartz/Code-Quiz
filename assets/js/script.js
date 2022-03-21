@@ -221,10 +221,11 @@ var scoreFunction = function() {
     console.log(nameScore);
     
     // put it in a list on DOM    
-    var hallOfFameEl = document.querySelector("#scorelist");
+    var hallOfFameEl = document.querySelector("#scoreForm");
     var fameEl = document.createElement("li");
+        fameEl.className = "scorelist";
         fameEl.textContent = nameScore.initials + " " + nameScore.score;
-        fameEl.append();
+        hallOfFameEl.appendChild(fameEl);
 
         console.log(fameEl);
     });   
