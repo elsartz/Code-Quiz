@@ -1,8 +1,9 @@
+// Global variables
 var questionCounter = 5;
 var timeLimit = 75;
 var score = 0;
-
 var optionButtonsEl = document.createElement("section");
+var timeEl = document.querySelector(".time");
 var formEl = document.getElementById("scoreForm");
     formEl.style.display = "none";
 
@@ -20,66 +21,64 @@ var countDown = function() {
      if (timeLimit === 0 || totalCards >4) {
           clearInterval(startCountDown);
      }
- }
+}
+var startCountDown = setInterval(countDown, 1000);
 
- var startCountDown = setInterval(countDown, 1000);
-
- var timeEl = document.querySelector(".time");
-
+ 
+// Random question card
 var index = 0;
 var randomNumber = function (min, questionCounter) {
     var result = Math.floor(Math.random() * (questionCounter - 0));
     index = result;
     return result;
   };
-//   console.log(randomNumber(0,5));
-//   console.log(index);
-  
 
+  
+// The questions and answers where can be added more in the future
 var questionCards = [
          { h1:"Commonly used data types Do NOT include:",
             correct: "btn3", 
                 buttons: { 
-                    btn1:{ txt:"1.strings", value: false}, 
-                    btn2:{ txt:"2.booleans", value: false}, 
-                    btn3:{ txt:"3.alerts", value: true}, 
-                    btn4:{ txt:"4.numbers", value: false}
+                    btn1:{ txt:"1.strings"}, 
+                    btn2:{ txt:"2.booleans"}, 
+                    btn3:{ txt:"3.alerts"}, 
+                    btn4:{ txt:"4.numbers"}
                 }
              },
          { h1:"The condition in an if/else statement is enclosed with __________.", 
          correct: "btn2",
                 buttons: { 
-                    btn1:{ txt:"1.quotes", value: false}, 
-                    btn2:{ txt:"2.curly brackets", value: true}, 
-                    btn3:{ txt:"3.parenthesis", value: false}, 
-                    btn4:{ txt:"4.square brackets", value: false}
+                    btn1:{ txt:"1.quotes"}, 
+                    btn2:{ txt:"2.curly brackets"}, 
+                    btn3:{ txt:"3.parenthesis"}, 
+                    btn4:{ txt:"4.square brackets"}
                 }
             }, 
          { h1:"Arrays in Javascript can be used to store __________.", 
          correct: "btn4",
                 buttons: { 
-                    btn1:{ txt:"1.numbers and strings", value: false}, 
-                    btn2:{ txt:"2.other arrays", value: false}, 
-                    btn3:{ txt:"3.booleans", value: false}, 
-                    btn4:{ txt:"4.all of the above", value: true}
+                    btn1:{ txt:"1.numbers and strings"}, 
+                    btn2:{ txt:"2.other arrays"}, 
+                    btn3:{ txt:"3.booleans"}, 
+                    btn4:{ txt:"4.all of the above"}
                 }
             },
          { h1:"String values must be enclosed within ________ when being assigned to variables.", 
          correct: "btn3",
                 buttons: { 
-                    btn1:{ txt:"1.commas", value: false}, 
-                    btn2:{ txt:"2.curly brackets", value: false}, 
-                    btn3:{ txt:"3.quotes", value: true}, 
-                    btn4:{ txt:"4.parenthesis", value: false}
+                    btn1:{ txt:"1.commas"}, 
+                    btn2:{ txt:"2.curly brackets"}, 
+                    btn3:{ txt:"3.quotes"}, 
+                    btn4:{ txt:"4.parenthesis"}
                 }
             },
          { h1:"A very useful tool used during development and debugging for printing content to the debugger is:", 
          correct: "btn4",
                 buttons: { 
-                    btn1:{ txt:"1.Javascript", value: false}, 
-                    btn2:{ txt:"2.terminal/bash", value: false}, 
-                    btn3:{ txt:"3.for loops", value: false}, 
-                    btn4:{ txt:"4.console.log", value: true}
+                    btn1:{ txt:"1.Javascript"}, 
+                    btn2:{ txt:"2.terminal/bash"}, 
+                    btn3:{ txt:"3.for loops"}, 
+                    btn4:{ txt:"4.console.log"}
                 }
             },
         ];
@@ -91,11 +90,9 @@ var trueAnswer = [  questionCards[0].correct,
                     questionCards[4].correct
                 ];
 
-        // console.log(trueAnswer);
+        
                         
-var pageContentEl = document.querySelector("#challenge");
 
-var currentCard = questionCards[randomNumber(0,5)];
 
 function myf () {
 var newarray=[result];
@@ -111,13 +108,15 @@ var newarray=[result];
     }
     console.log(newarray);
 }
+// Select where the cards will be
+var pageContentEl = document.querySelector("#challenge");
 
-
+// Random card
+var currentCard = questionCards[randomNumber(0,5)];
 var createCardEl = function() {
 
     var currentCard = questionCards[randomNumber(0,5)];
-    // console.log(currentCard);
-
+    
     var questionEl = document.createElement("h2");
         questionEl.className = "question-header";
         questionEl.textContent = currentCard.h1;
@@ -158,7 +157,7 @@ var createCardEl = function() {
 }
 
 
-
+// Remove the question card
 function removeCardEl() {  
      var optButtons = document.querySelector("section");
         pageContentEl.removeChild(optButtons);
@@ -166,6 +165,7 @@ function removeCardEl() {
         pageContentEl.removeChild(header);    
 }
 
+// Add notification correct or wrong
 function addFooterEl(answer) {
      var answerEl = document.createElement("footer");
          answerEl.className = "footer";
@@ -179,7 +179,7 @@ function addFooterEl(answer) {
         }
         var footerEl = document.querySelector("footer");
             footerEl.append(answerEl);
-    
+            // Delay the notification
             var timeLeft = 1;
             var timeInterval = setInterval(function() {
                 if ( timeLeft > 0) {
@@ -236,12 +236,7 @@ function clearScore() {
     window.localStorage.clear();
 }
 
-
-
-
-// var optionButtonsEl = document.createElement("section");
- 
-
+// Main function responsible for true or false
 var i =1;
 var buttonHandler = function(event) {
     
@@ -315,14 +310,11 @@ var buttonHandler = function(event) {
         // Show submit form
         formEl.style.display = "block";
         // save to localstorage
-        scoreFunction();
-                
-    }   
-    
+        scoreFunction();                
+    }    
 }
 
-// 
-
+// Enter the page and listen user action
 pageContentEl.addEventListener("click", buttonHandler);
-
+// Start quiz by showing the first question
 createCardEl();
