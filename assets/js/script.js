@@ -10,8 +10,8 @@ var formEl = document.getElementById("scoreForm");
 var hallOfFameEl = document.querySelector("#formscore");
 var fameEl = document.createElement("li");    
 
- var sectionEl = document.getElementById("score-screen");
-     sectionEl.style.display = "none";
+//  var sectionEl = document.getElementById("score-screen");
+//      sectionEl.style.display = "none";
 // I try to make it one page at the end but it was too late
 
 
@@ -207,7 +207,7 @@ var scoreFunction = function() {
     submitEl.addEventListener("click", function (event) {
 
         // stop the screen like pause for the game
-         event.preventDefault();
+        //  event.preventDefault();
         // Player's information
         var playerInput = highScoreEl.value;
         var playerInfo = {
