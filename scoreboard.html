@@ -9,14 +9,24 @@
 </head>
 <body>
 <!-- Html page for keeping the score -->
-    <section class="score-screen" id="score-screen">
-        <h2>High scores</h2></br>
-        <form id="scoreForm"></form>
-        <ul id="scorelist"></ul>
-            <li id="list"></li>
-        <button class="btn" id="btn"><a href="index.html">Go back</a></button>
-        <button class="btn" id="btn" onclick="clearScore()">Clear high scores</button>
-    </section>    
+<section class="score-screen" id="score-screen">
+    <h2>High scores</h2></br>
+    <form id="formscore"></form>
+    <ul id="scorelist">
+        <li id="list"></li>
+    </ul>
+    <button class="btn" id="btn"><a href="index.html">Go back</a></button>
+    <button class="btn" id="btn" onclick="clearScore()">Clear high scores</button>
+</section>    
     <script src="./assets/js/script.js"></script>
+    <script>
+        var nameScore = JSON.parse(localStorage.getItem("namein"));
+        var hallOfFameEl = document.querySelector("#formscore");
+        var fameEl = document.createElement("li");    
+
+        fameEl.className = "scorelist";
+        fameEl.textContent = nameScore.initials + " " + nameScore.score;
+        hallOfFameEl.appendChild(fameEl);
+    </script>
 </body>
 </html>

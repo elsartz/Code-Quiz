@@ -7,8 +7,11 @@ var timeEl = document.querySelector(".time");
 var formEl = document.getElementById("scoreForm");
     formEl.style.display = "none";
 
- var sectionEl = document.getElementById("score-screen");
-     sectionEl.style.display = "none";
+var hallOfFameEl = document.querySelector("#formscore");
+var fameEl = document.createElement("li");    
+
+//  var sectionEl = document.getElementById("score-screen");
+//      sectionEl.style.display = "none";
 // I try to make it one page at the end but it was too late
 
 
@@ -191,6 +194,8 @@ function addFooterEl(answer) {
 }
 
 
+
+
 // for future release var highScore = [];
 var scoreFunction = function() {
     
@@ -202,7 +207,7 @@ var scoreFunction = function() {
     submitEl.addEventListener("click", function (event) {
 
         // stop the screen like pause for the game
-         event.preventDefault();
+        //  event.preventDefault();
         // Player's information
         var playerInput = highScoreEl.value;
         var playerInfo = {
@@ -221,8 +226,8 @@ var scoreFunction = function() {
     console.log(nameScore);
     
     // put it in a list on DOM    
-    var hallOfFameEl = document.querySelector("#formscore");
-    var fameEl = document.createElement("li");
+    // var hallOfFameEl = document.querySelector("#formscore");
+    // var fameEl = document.createElement("li");
         fameEl.className = "scorelist";
         fameEl.textContent = nameScore.initials + " " + nameScore.score;
         hallOfFameEl.appendChild(fameEl);
@@ -235,6 +240,7 @@ var scoreFunction = function() {
 function clearScore() {
     var clearScoreBtn = document.querySelector("onclick");
     window.localStorage.clear();
+    fameEl.textContent = "";
 }
 
 // Main function responsible for true or false
